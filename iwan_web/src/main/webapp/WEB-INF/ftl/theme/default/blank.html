@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+[#include "/theme/default/common/nav.html" /]
+[#include "/theme/default/common/head.html" /]
+[#include "/theme/default/common/footer.html" /]
+<head>
+[@head "首页" /]
+</head>
+<body>
+	<div class="fakeloader"></div>
+
+    [@nav  1 /]
+	<!-- /.navbar -->
+
+	<div class="container">
+
+		<div class="row">
+
+		    
+			<!--/.sidebar-offcanvas-->
+		</div>
+		<!--/row-->
+
+		<hr>
+        [@footer /]
+		
+
+	</div>
+	<!--/.container-->
+
+
+
+	<script>
+		$(document).ready(function() {
+			$(".fakeloader").fakeLoader({
+				timeToHide : 1200,
+				bgColor : "#2ecc71",
+				spinner : "spinner1"
+			});
+		});
+	</script>
+</body>
+</html>

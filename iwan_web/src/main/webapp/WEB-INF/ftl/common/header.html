@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid self-max-width">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"> <img
+				src="${siteurl}static/img/logo.png" />
+			</a>
+		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li [#if index==1]class="active"[/#if]><a href="${siteurl}index.htm">首页</a></li>
+				<li [#if index==2]class="active"[/#if]><a href="${siteurl}courselist.htm">课程</a></li>
+				<li [#if index==3]class="active"[/#if]><a href="${siteurl}plan.htm">计划</a></li>
+				<li [#if index==4]class="active"[/#if]><a href="${siteurl}bbslist.htm">社区</a></li>
+				<li [#if index==5]class="active"[/#if]><a href="${siteurl}login.htm">会员</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

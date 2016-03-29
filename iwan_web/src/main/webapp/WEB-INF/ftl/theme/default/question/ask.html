@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	[#include "/theme/default/common/nav.html" /]
+	[#include "/theme/default/common/head.html" /]
+	[#include "/theme/default/common/footer.html" /]
+	<head>
+		[@head "提问" /]
+	</head>
+	<body>
+		<div class="fakeloader"></div>
+
+		[@nav  3 /]
+		<!-- /.navbar -->
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-xs-8">
+					<h1> 提问 </h1>
+					<form action="${siteurl}question/model_add.htm" method="post">
+						<div class="form-group">
+							<label > 一句话描述该问题： </label>
+							<input name="title" type="text" maxlength="60" class="form-control"  >
+						</div>
+						<div class="form-group">
+							<label > 问题分类： </label>
+							<select class="form-control"  name="catalog.id">
+							[#list catalogs as item]
+							<option value="${item.id}">${item.name!""}</option>
+							[/#list]
+							</select>
+						</div>
+						<div class="form-group">
+							<label >内容</label>
+							<textarea name="contents"  class="form-control"  placeholder="提问内容"></textarea>
+						</div>
+						 <div class="checkbox">
+						    <label>
+						      <input name="notice" type="checkbox">  如果有新回答或评论时发送邮件通知我。 
+						    </label>
+						  </div>
+						<button type="submit" class="btn btn-default">
+							提问
+						</button>
+					</form>
+				</div>
+				<div class="col-xs-4">
+					欢迎来到 Q&A ，有什么不懂的可以尽管在这里提问，你将会收到社区其他成员的回答。
+				</div>
+				<!--/.sidebar-offcanvas-->
+			</div>
+			<!--/row-->
+
+			<hr>
+			[@footer /]
+
+		</div>
+		<!--/.container-->
+
+		<script>
+			$(document).ready(function() {
+				$(".fakeloader").fakeLoader({
+					timeToHide : 1200,
+					bgColor : "#2ecc71",
+					spinner : "spinner1"
+				});
+			});
+		</script>
+	</body>
+</html>

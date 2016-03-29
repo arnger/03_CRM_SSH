@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	[#include "/theme/default/common/nav.html" /]
+	[#include "/theme/default/common/head.html" /]
+	[#include "/theme/default/common/footer.html" /]
+	[#include "/theme/default/common/page.html" /]
+	
+	<head>
+		[@head "问答首页" /]
+		<style type="text/css">
+			body {
+				padding-top: 70px;
+			}
+
+			footer {
+				padding: 30px 0;
+			}
+			.md10{
+				margin-bottom:20px;
+			}
+			.pannel{
+			padding: 10px;
+			border-radius: 6px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="fakeloader"></div>
+
+		[@nav  3 /]
+		<!-- /.navbar -->
+
+		<div class="container">
+			<ul class="nav nav-tabs md10" role="tablist">
+				<li [#if catalog = "new"] class="active"[/#if] >
+					<a href="${siteurl}question/type/new.htm" >最新</a>
+				</li>
+				<li [#if catalog = "hot"] class="active"[/#if] >
+					<a href="${siteurl}question/type/hot.htm" >最热</a>
+				</li>
+				<li [#if catalog = "vote"] class="active"[/#if]>
+					<a href="${siteurl}question/type/vote.htm" >投票最多</a>
+				</li>
+				<li [#if catalog = "answer"] class="active"[/#if]>
+					<a href="${siteurl}question/type/answer.htm" >回答最多</a>
+				</li>
+				<li [#if catalog = "views"] class="active"[/#if] >
+					<a href="${siteurl}question/type/views.htm" >浏览最多</a>
+				</li>
+				<li [#if catalog = "unanswer"] class="active"[/#if]  >
+					<a href="${siteurl}question/type/unanswer.htm" >未回答</a>
+				</li>
+				[@shiro.authenticated]
+				<li [#if catalog = "my"] class="active"[/#if]  >
+					<a href="${siteurl}question/type/my.htm" >我的提问</a>
+				</li>
+				[/@shiro.authenticated]
+			</ul>
+	
+	
+		<div class="row">
+
+			<div class="col-xs-12 col-sm-9">
+				<p class="pull-right visible-xs">
+				</p>
+				[#if questions??]
+				[#list questions as item]
+				<div class="row">
+					<div class="col-xs-12 col-lg-12">
+						<h2>${item.title!""}</h2>
+						<p>
+							${item.contents!""}
+						</p>
+						<p>
+							<a class="btn btn-default pull-right" href="${siteurl}question/view/${item.id}.htm" role="button">点击查看更多 &raquo;</a>
+						</p>
+					</div>
+				</div>
+				<hr>
+				[/#list]
+				[/#if]
+				<!--/row-->
+			</div>
+			<!--/.col-xs-12.col-sm-9-->
+             
+			<div class="col-xs-6 col-sm-3" >
+			    <a href="${siteurl}question/ask.htm" class="btn btn-default btn-block" type="button">提问</a>
+				<div class="pannel">
+						欢迎来到 Q&A ，有什么不懂的可以尽管在这里提问，你将会收到社区其他成员的回答。
+				</div>
+				<div class="list-group">
+					[#list catalogs]
+					[#items as item]
+					<a href="${siteurl}question/catalog.htm?id=${item.id}" class="list-group-item">${item.name!""}(${item.nums!"0"})</a>
+					[/#items]
+					[#else]
+					[/#list]
+				</div>
+
+			</div>
+			<!--/.sidebar-offcanvas-->
+		
+		     <div class="col-xs-12  text-center">
+				   [@pager page curpage "${siteurl}question/type/${catalog}.htm?x=1" /]
+			 </div>
+		</div>
+		<!--/row-->
+
+		<hr>
+
+		[@footer /]
+
+		</div>
+		<!--/.container-->
+
+		<script>
+			$(document).ready(function() {
+				$(".fakeloader").fakeLoader({
+					timeToHide : 1200,
+					bgColor : "#2ecc71",
+					spinner : "spinner1"
+				});
+			});
+		</script>
+	</body>
+</html>

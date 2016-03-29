@@ -1,0 +1,10 @@
+页面加载插件
+https://github.com/joaopereirawd/fakeLoader.js
+
+ $(document).ready(function(){
+                $(".fakeloader").fakeLoader({
+                    timeToHide:1200,
+                    bgColor:"#e74c3c",
+                    spinner:"spinner2"
+                });
+});

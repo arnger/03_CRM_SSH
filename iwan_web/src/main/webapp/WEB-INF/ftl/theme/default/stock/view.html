@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	[#include "/theme/default/common/nav.html" /]
+	[#include "/theme/default/common/head.html" /]
+	[#include "/theme/default/common/footer.html" /]
+	[#include "/theme/default/common/page.html" /]
+
+	<head>
+		[@head "${stock.name!''}" /]
+		<style type="text/css">
+			body {
+				padding-top: 70px;
+			}
+
+			footer {
+				padding: 30px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="fakeloader"></div>
+
+		[@nav  6 /]
+		<!-- /.navbar -->
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-12">
+					<p class="pull-right visible-xs">
+						<button type="button" class="btn btn-primary btn-xs"
+						data-toggle="offcanvas">
+							Toggle nav
+						</button>
+					</p>
+					<div class="jumbotron">
+						<h1>${stock.name!''}</h1>
+						[#if detail??]
+						<h3>${detail.currentPrice!''}元</h3>
+						[/#if]
+					</div>
+				</div>
+				<div class="row">
+					[#if detail??]
+					<div class="col-xs-3">
+						开盘价格:${detail.openningPrice!""}元
+					</div>
+					<div class="col-xs-3">
+						昨天收盘:${detail.closingPrice!""}元
+					</div>
+					<div class="col-xs-3">
+						最高价格:${detail.hPrice!""}元
+					</div>
+					<div class="col-xs-3">
+						最低价格:${detail.lPrice!""}元
+					</div>
+					[/#if]
+					<div class="col-xs-3">
+						代码:${stock.code!""}
+					</div>
+					<div class="col-xs-3">
+						行业:${stock.industry!""}
+					</div>
+					<div class="col-xs-3">
+						市盈率:${stock.pe!""}
+					</div>
+					<div class="col-xs-3">
+						市净率:${stock.pb!""}
+					</div>
+
+				</div>
+
+				<div class="col-xs-12 col-sm-12">
+					<div id="flashOK">
+						<div class="flash">
+							<object   height="490" width="560" type="application/x-shockwave-flash" data="http://finance.sina.com.cn/flash/cn.swf?" id="flash" style="visibility: visible;">
+								<param name="allowFullScreen" value="true">
+								<param name="allowScriptAccess" value="always">
+								<param name="wmode" value="transparent">
+								<param name="flashvars" value="symbol=${stock.gif}&amp;code=iddg64geja6fea4eafh9jbj7c5j4ie5d&amp;s=3">
+							</object>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-xs-12 col-sm-12">
+					<div>
+
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active">
+								<a href="#home" aria-controls="home" role="tab" data-toggle="tab">实时线图</a>
+							</li>
+							<li role="presentation">
+								<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">日k线图</a>
+							</li>
+							<li role="presentation">
+								<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">周k线图</a>
+							</li>
+							<li role="presentation">
+								<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">月k线图</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="home">
+								<img alt="" src="http://image.sinajs.cn/newchart/min/n/${stock.gif}.gif">
+								...
+							</div>
+							<div role="tabpanel" class="tab-pane" id="profile">
+								<img alt="" src="http://image.sinajs.cn/newchart/daily/n/${stock.gif}.gif">
+							</div>
+							<div role="tabpanel" class="tab-pane" id="messages">
+								<img alt="" src="http://image.sinajs.cn/newchart/weekly/n/${stock.gif}.gif">
+
+							</div>
+							<div role="tabpanel" class="tab-pane" id="settings"><img alt="" src="http://image.sinajs.cn/newchart/monthly/n/${stock.gif}.gif">
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<!--/.col-xs-12.col-sm-9-->
+
+				<!--/.sidebar-offcanvas-->
+			</div>
+			<!--/row-->
+
+			<hr>
+
+			[@footer /]
+
+		</div>
+		<!--/.container-->
+
+		<script>
+			$(document).ready(function() {
+				$(".fakeloader").fakeLoader({
+					timeToHide : 1200,
+					bgColor : "#2ecc71",
+					spinner : "spinner1"
+				});
+			});
+		</script>
+	</body>
+</html>
